@@ -11,6 +11,6 @@ namespace Calinga.SDK
 
         ILanguageContext CreateContext(string language);
 
-        void ClearCacheAsync();
+        void ClearCache();
     }
 }

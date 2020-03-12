@@ -1,6 +1,5 @@
 ﻿using static System.FormattableString;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -21,7 +20,7 @@ namespace Calinga.Infrastructure
             _settings = settings;
         }
 
-        public async Task<IReadOnlyDictionary<string, string>> GetTranslations(string language)
+        public async Task<IReadOnlyDictionary<string, string>> GetTranslationsAsync(string language)
         {
             try
             {
@@ -39,7 +38,7 @@ namespace Calinga.Infrastructure
             }
         }
 
-        public async Task<IEnumerable<string>> GetLanguages()
+        public async Task<IEnumerable<string>> GetLanguagesAsync()
         {
             try
             {

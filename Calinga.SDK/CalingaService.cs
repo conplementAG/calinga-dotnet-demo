@@ -20,7 +20,7 @@ namespace Calinga.SDK
         }
 
         public CalingaService(CalingaServiceSettings settings)
-            : this(new CachingService(new ConsumerHttpClient(settings)), settings)
+            : this(new CachingService(new ConsumerHttpClient(settings), new FileService(settings)), settings)
         {
             ValidateSettings(settings);
         }
@@ -51,7 +51,7 @@ namespace Calinga.SDK
             return _cachingService.GetLanguages();
         }
 
-        public void ClearCacheAsync()
+        public void ClearCache()
         {
             _cachingService.ClearCache();
         }
@@ -61,6 +61,7 @@ namespace Calinga.SDK
             Guard.IsNotNull(setting, nameof(setting));
             Guard.IsNotNullOrWhiteSpace(setting.Project);
             Guard.IsNotNullOrWhiteSpace(setting.Tenant);
+            Guard.IsNotNullOrWhiteSpace(setting.CacheDirectory);
         }
     }
 }

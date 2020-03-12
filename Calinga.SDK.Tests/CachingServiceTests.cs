@@ -14,16 +14,18 @@ namespace Calinga.SDK.Tests
     {
         private IConsumerHttpClient _consumerHttpClient;
         private ICachingService _cachingService;
+        private IFileService _fileService;
 
         [TestInitialize]
         public void Init()
         {
             _consumerHttpClient = Substitute.For<IConsumerHttpClient>();
-            _consumerHttpClient.GetTranslations(TestData.Language_DE).Returns(TestData.Translations_De);
-            _consumerHttpClient.GetTranslations(TestData.Language_EN).Returns(TestData.Translations_En);
-            _consumerHttpClient.GetLanguages().Returns(TestData.Languages);
+            _consumerHttpClient.GetTranslationsAsync(TestData.Language_DE).Returns(TestData.Translations_De);
+            _consumerHttpClient.GetTranslationsAsync(TestData.Language_EN).Returns(TestData.Translations_En);
+            _consumerHttpClient.GetLanguagesAsync().Returns(TestData.Languages);
+            _fileService = Substitute.For<IFileService>();
 
-            _cachingService = new CachingService(_consumerHttpClient);
+            _cachingService = new CachingService(_consumerHttpClient, _fileService);
         }
 
         [TestMethod]
@@ -36,7 +38,22 @@ namespace Calinga.SDK.Tests
             translations.ContainsKey(TestData.Key_1).Should().BeTrue();
             translations.ContainsKey(TestData.Key_2).Should().BeTrue();
 
-            await _consumerHttpClient.Received().GetTranslations(TestData.Language_DE).ConfigureAwait(false);
+            await _consumerHttpClient.Received().GetTranslationsAsync(TestData.Language_DE).ConfigureAwait(false);
+        }
+
+        [TestMethod]
+        public async Task GetTranslations_ShouldGetTranslationsFromCalingaService_AndSaveInFile()
+        {
+            // Arrange & Act
+            var translations = await _cachingService.GetTranslations(TestData.Language_DE).ConfigureAwait(false);
+
+            // Assert
+            translations.ContainsKey(TestData.Key_1).Should().BeTrue();
+            translations.ContainsKey(TestData.Key_2).Should().BeTrue();
+
+            await _consumerHttpClient.Received().GetTranslationsAsync(TestData.Language_DE).ConfigureAwait(false);
+            await _fileService.Received().SaveTranslationsAsync(TestData.Language_DE, Arg.Any<string>())
+                .ConfigureAwait(false);
         }
 
         [TestMethod]
@@ -44,13 +61,15 @@ namespace Calinga.SDK.Tests
         {
             // Arrange
             var translations = await _cachingService.GetTranslations(TestData.Language_DE).ConfigureAwait(false);
-            await _consumerHttpClient.Received().GetTranslations(Arg.Any<string>()).ConfigureAwait(false);
+            await _consumerHttpClient.Received().GetTranslationsAsync(Arg.Any<string>()).ConfigureAwait(false);
 
             // Act
             var secondCallTranslations = await _cachingService.GetTranslations(TestData.Language_DE).ConfigureAwait(false);
 
             // Assert
             _consumerHttpClient.DidNotReceive();
+            _fileService.DidNotReceive();
+
             secondCallTranslations.Should().BeSameAs(translations);
         }
 
@@ -61,7 +80,7 @@ namespace Calinga.SDK.Tests
             var languages = await _cachingService.GetLanguages().ConfigureAwait(false);
 
             // Assert
-            await _consumerHttpClient.Received().GetLanguages().ConfigureAwait(false);
+            await _consumerHttpClient.Received().GetLanguagesAsync().ConfigureAwait(false);
 
             Assert.IsNotNull(languages.FirstOrDefault(l => l == TestData.Language_DE));
             Assert.IsNotNull(languages.FirstOrDefault(l => l == TestData.Language_EN));
@@ -73,7 +92,7 @@ namespace Calinga.SDK.Tests
             // Arrange
             var languages = await _cachingService.GetLanguages().ConfigureAwait(false);
 
-            await _consumerHttpClient.Received().GetLanguages().ConfigureAwait(false);
+            await _consumerHttpClient.Received().GetLanguagesAsync().ConfigureAwait(false);
 
             // Act
             var secondCallLanguages = await _cachingService.GetLanguages().ConfigureAwait(false);
@@ -88,13 +107,13 @@ namespace Calinga.SDK.Tests
         {
             // Arrange
              await _cachingService.GetLanguages().ConfigureAwait(false);
-             await _consumerHttpClient.Received().GetLanguages().ConfigureAwait(false);
+             await _consumerHttpClient.Received().GetLanguagesAsync().ConfigureAwait(false);
 
             // Act
              _cachingService.ClearCache();
 
             // Assert
-            await _consumerHttpClient.Received().GetLanguages().ConfigureAwait(false);
+            await _consumerHttpClient.Received().GetLanguagesAsync().ConfigureAwait(false);
         }
     }
 }

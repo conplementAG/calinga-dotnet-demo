@@ -11,5 +11,7 @@
         public string Version { get; set; }
 
         public bool IsDevMode { get; set; }
+
+        public string CacheDirectory { get; set; }
     }
 }

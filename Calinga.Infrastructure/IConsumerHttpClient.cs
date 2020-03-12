@@ -5,8 +5,8 @@ namespace Calinga.Infrastructure
 {
     public interface IConsumerHttpClient
     {
-        Task<IReadOnlyDictionary<string, string>> GetTranslations(string language);
+        Task<IReadOnlyDictionary<string, string>> GetTranslationsAsync(string language);
 
-        Task<IEnumerable<string>> GetLanguages();
+        Task<IEnumerable<string>> GetLanguagesAsync();
     }
 }

@@ -23,7 +23,7 @@ namespace Calinga.SDK.ConsoleApp
             Console.WriteLine(Invariant($"Key: Button.Create,  Translation: {translation}"));
 
             Console.WriteLine("clean cache...");
-            service.ClearCacheAsync();
+            service.ClearCache();
 
             Console.ReadKey(false);
         }
@@ -38,7 +38,9 @@ namespace Calinga.SDK.ConsoleApp
 
             Version = "v1",
 
-            IsDevMode = false
+            IsDevMode = false,
+
+            CacheDirectory = AppDomain.CurrentDomain.BaseDirectory
         };
     }
 }

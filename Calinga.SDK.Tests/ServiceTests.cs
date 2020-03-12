@@ -35,7 +35,7 @@ namespace Calinga.SDK.Tests
             Action constructor = () => new CalingaService(null!);
 
             // Assert
-            constructor.Should().Throw<ArgumentNullException>();
+            constructor.Should().Throw<Exception>();
         }
 
         [TestMethod]
@@ -160,7 +160,9 @@ namespace Calinga.SDK.Tests
 
             Version = "v1",
 
-            IsDevMode = false
+            IsDevMode = false,
+
+            CacheDirectory = AppDomain.CurrentDomain.BaseDirectory
         };
     }
 }
