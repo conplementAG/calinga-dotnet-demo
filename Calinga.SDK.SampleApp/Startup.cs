@@ -1,4 +1,5 @@
-using Calinga.Infrastructure;
+using Calinga.NET;
+using Calinga.NET.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 

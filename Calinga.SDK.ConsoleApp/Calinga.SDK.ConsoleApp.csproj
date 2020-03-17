@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Calinga.SDK\Calinga.SDK.csproj" />
-    <ProjectReference Include="..\Calinga.Infrastructure\Calinga.Infrastructure.csproj" />
+    <PackageReference Include="Calinga.NET" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
