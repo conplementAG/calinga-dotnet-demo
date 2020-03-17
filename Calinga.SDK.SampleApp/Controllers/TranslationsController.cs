@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Calinga.NET;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calinga.SDK.SampleApp.Controllers

@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Calinga.NET" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Calinga.SDK\Calinga.SDK.csproj" />
   </ItemGroup>
 </Project>

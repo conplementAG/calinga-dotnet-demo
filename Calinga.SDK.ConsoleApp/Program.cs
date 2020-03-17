@@ -2,7 +2,8 @@
 
 using System;
 using System.Threading.Tasks;
-using Calinga.Infrastructure;
+using Calinga.NET;
+using Calinga.NET.Infrastructure;
 
 namespace Calinga.SDK.ConsoleApp
 {
@@ -40,7 +41,7 @@ namespace Calinga.SDK.ConsoleApp
 
             IsDevMode = false,
 
-            CacheDirectory = AppDomain.CurrentDomain.BaseDirectory
+            CacheDirectory = "CacheFiles"
         };
     }
 }
