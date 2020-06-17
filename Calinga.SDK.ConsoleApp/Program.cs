@@ -31,13 +31,13 @@ namespace Calinga.SDK.ConsoleApp
 
         private static CalingaServiceSettings AppCalingaServiceSettings => new CalingaServiceSettings
         {
-            Tenant = "SdkSample",
+            Organization = "SdkSample",
 
             Project = "ExampleProject",
 
             ApiToken = "dd60c24b1353f14fc614742e1a9c687a",
 
-            Version = "v1",
+            Team = "Default Team",
 
             IsDevMode = false,
 
