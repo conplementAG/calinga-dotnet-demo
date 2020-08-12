@@ -41,6 +41,8 @@ namespace Calinga.SDK.ConsoleApp
 
             IsDevMode = false,
 
+            IncludeDrafts = true,
+
             CacheDirectory = "CacheFiles"
         };
     }
