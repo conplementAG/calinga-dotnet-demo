@@ -1,6 +1,7 @@
 ﻿using static System.FormattableString;
 
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Calinga.NET;
 using Calinga.NET.Infrastructure;
@@ -11,9 +12,18 @@ namespace Calinga.Demo.ConsoleApp
     {
         private static async Task Main()
         {
-            Console.WriteLine("calinga service: try to get translations");
-
             var service = new CalingaService(AppCalingaServiceSettings);
+
+            Console.WriteLine("calinga service: try to get all languages");
+
+            var languages = await service.GetLanguagesAsync().ConfigureAwait(false);
+
+            foreach (var name in languages)
+            {
+                Console.WriteLine(name);
+            }
+
+            Console.WriteLine("calinga service: try to get translations");
 
             var translation = await service.TranslateAsync("Button.Cancel", "en").ConfigureAwait(false);
 
