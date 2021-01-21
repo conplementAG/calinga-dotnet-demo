@@ -18,7 +18,10 @@ namespace Calinga.Demo.ConsoleApp
 
             var languages = await service.GetLanguagesAsync().ConfigureAwait(false);
 
-            languages.ToList().ForEach(Console.WriteLine);
+            foreach (var name in languages)
+            {
+                Console.WriteLine(name);
+            }
 
             Console.WriteLine("calinga service: try to get translations");
 
