@@ -2,7 +2,7 @@
 using Calinga.NET;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Calinga.SDK.SampleApp.Controllers
+namespace Calinga.Demo.SampleApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace Calinga.SDK.SampleApp
+namespace Calinga.Demo.SampleApp
 {
     public class Startup
     {
