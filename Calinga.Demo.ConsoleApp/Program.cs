@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Calinga.NET;
 using Calinga.NET.Infrastructure;
 
-namespace Calinga.SDK.ConsoleApp
+namespace Calinga.Demo.ConsoleApp
 {
     internal static class Program
     {

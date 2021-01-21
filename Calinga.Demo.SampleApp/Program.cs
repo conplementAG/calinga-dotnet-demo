@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Calinga.SDK.SampleApp
+namespace Calinga.Demo.SampleApp
 {
     public static class Program
     {
