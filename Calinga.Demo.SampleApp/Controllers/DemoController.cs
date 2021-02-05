@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Calinga.NET;
+
 using Microsoft.AspNetCore.Mvc;
+
+using Calinga.NET;
 
 namespace Calinga.Demo.SampleApp.Controllers
 {
@@ -26,6 +28,12 @@ namespace Calinga.Demo.SampleApp.Controllers
         public Task<string> Get(string key, string language)
         {
             return _service.TranslateAsync(key, language);
+        }
+
+        [HttpDelete("cache")]
+        public void ClearCache()
+        {
+            _service.ClearCache();
         }
     }
 }
