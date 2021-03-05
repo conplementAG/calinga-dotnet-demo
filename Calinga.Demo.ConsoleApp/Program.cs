@@ -1,8 +1,8 @@
 ﻿using static System.FormattableString;
 
 using System;
-using System.Linq;
 using System.Threading.Tasks;
+
 using Calinga.NET;
 using Calinga.NET.Infrastructure;
 
@@ -29,12 +29,12 @@ namespace Calinga.Demo.ConsoleApp
 
             Console.WriteLine(Invariant($"Key: Button.Cancel,  Translation: {translation}"));
 
-             translation = await service.TranslateAsync("Button.Create", "en").ConfigureAwait(false);
+            translation = await service.TranslateAsync("Button.Create", "en").ConfigureAwait(false);
 
             Console.WriteLine(Invariant($"Key: Button.Create,  Translation: {translation}"));
 
             Console.WriteLine("clean cache...");
-            service.ClearCache();
+            await service.ClearCache().ConfigureAwait(false);
 
             Console.ReadKey(false);
         }
@@ -51,7 +51,8 @@ namespace Calinga.Demo.ConsoleApp
 
             IsDevMode = false,
 
-            CacheDirectory = "CacheFiles"
+            CacheDirectory = "CacheFiles",
+            MemoryCacheExpirationIntervalInSeconds = 5
         };
     }
 }
