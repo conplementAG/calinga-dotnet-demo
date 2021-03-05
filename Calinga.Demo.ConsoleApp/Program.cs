@@ -52,7 +52,10 @@ namespace Calinga.Demo.ConsoleApp
             IsDevMode = false,
 
             CacheDirectory = "CacheFiles",
-            MemoryCacheExpirationIntervalInSeconds = 600
+
+            MemoryCacheExpirationIntervalInSeconds = 600,
+
+            DoNotWriteCacheFiles = false
         };
     }
 }
