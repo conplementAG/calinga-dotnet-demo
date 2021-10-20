@@ -24,6 +24,12 @@ namespace Calinga.Demo.SampleApp.Controllers
             return _service.GetLanguagesAsync();
         }
 
+        [HttpGet("referenceLanguage")]
+        public Task<string> GetReferenceLanguage()
+        {
+            return _service.GetReferenceLanguage();
+        }
+
         [HttpGet("translation")]
         public Task<string> Get(string key, string language)
         {

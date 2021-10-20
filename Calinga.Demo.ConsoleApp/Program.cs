@@ -23,6 +23,9 @@ namespace Calinga.Demo.ConsoleApp
                 Console.WriteLine(name);
             }
 
+            Console.WriteLine("calinga service: get reference language");
+            Console.WriteLine(await service.GetReferenceLanguage());
+
             Console.WriteLine("calinga service: try to get translations");
 
             var translation = await service.TranslateAsync("Button.Cancel", "en").ConfigureAwait(false);
@@ -45,7 +48,7 @@ namespace Calinga.Demo.ConsoleApp
 
             Project = "ExampleProject",
 
-            ApiToken = "dd60c24b1353f14fc614742e1a9c687a",
+            ApiToken = "d9bd4a4ab94a9a1e4dc0fa7bdfafb123",
 
             Team = "Default Team",
 
